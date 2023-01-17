@@ -1,5 +1,8 @@
 import {DayPilot, DayPilotMonth} from "@daypilot/daypilot-lite-react";
 import React from "react";
+import "./MonthStyles.css";
+import "./icons/style.css";
+
 type Props = {
     
 }
@@ -10,7 +13,7 @@ function Calendar({}: Props) {
   const calendarRef = React.createRef();
 
   function  calendar() {
-    return calendarRef.current;
+    return calendarRef.current.control;
   }
 
   const [state, setState] = React.useState({
