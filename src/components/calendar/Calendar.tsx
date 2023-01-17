@@ -85,12 +85,14 @@ function Calendar({}: Props) {
         text: modal.result
       });
     },
+  }
   );
 
    
         return (
           <div>
           <DayPilotMonth
+            {...state}
             ref={calendarRef}
           />
         </div>

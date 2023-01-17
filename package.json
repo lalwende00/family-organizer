@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@daypilot/daypilot-lite-react": "^3.10.1",
+    "@daypilot/daypilot-lite-react": "^3.11.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
