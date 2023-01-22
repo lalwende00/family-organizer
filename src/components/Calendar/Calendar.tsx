@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-
+import AlternateDays from "../../interfaces/alternateDays";
+import Modal from "./Modals/Modal";
 type Props = {};
-type alternateDays = {
-  mother: Date[],
-  father: Date[]
-}
 
 function Calendar({}: Props) {
   const [date, setDate] = useState<Date>(new Date());
-
+  
   const listOfDays: string[] = [
     "lundi",
     "mardi",
@@ -19,7 +16,14 @@ function Calendar({}: Props) {
     "dimanche",
   ];
 
-  const [mockData,setMockData] = useState<alternateDays>({mother:[],father:[]});
+  const [mockData,setMockData] = useState<AlternateDays>(
+    {
+      motherDays: [],
+      fatherDays: [],
+      motherDaysOff: [],
+      fatherDaysOff: []
+    }
+  );
 
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
@@ -98,15 +102,21 @@ function Calendar({}: Props) {
     setDate(new Date(`${newMonth} 1 ${newYear}`));
   };
 
-  function addMotherDay(motherDay: Date): void {
-    setMockData(mother => ({
-      ...mother,
-      motherDay
+  function openModal(content: any, options = {}){
+    return(<Modal></Modal>)
+  }
+
+
+  function addMotherDay(dayOfCurrentMonth: number): void {
+    const date = new Date(year,month,dayOfCurrentMonth);
+    const mother = mockData.motherDays.push(date);
+    setMockData(motherDays => ({
+      ...motherDays,
+      mother
     }) );
 
     console.log("mock data",mockData)
   }
-
 
   return (
     <div className="mb-2 ">
@@ -191,7 +201,13 @@ function Calendar({}: Props) {
                         );
                       } else {
                         return (
-                          <span onClick={() => setMockData({mother: mother.push(dayOfCurrentMonth)})} className="px-2 py-3 text-center cursor-pointer  hover:text-blue-500">
+                          <span onClick={() =>{
+                            openModal(<CustomComponent />, {
+                              darkMode: true,
+                              closeButton: false // Close on click outside
+                          })
+                          }}
+                           className="px-2 py-3 text-center cursor-pointer  hover:text-blue-500">
                             {dayOfCurrentMonth}
                           </span>
                         );
