@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import AlternateDays from "../../interfaces/alternateDays";
 import Modal from "./Modals/Modal";
-import UseModal from "./Modals/UseModal";
 
 type Props = {};
 
 function Calendar({}: Props) {
   const [date, setDate] = useState<Date>(new Date());
-  const { isOpen, toggle } = UseModal();
   
   const listOfDays: string[] = [
     "lundi",
@@ -123,12 +121,7 @@ function Calendar({}: Props) {
       <div className="p-4 h-[420px] bg-white shadow-lg rounded-2xl dark:bg-gray-700">
         <div className="flex flex-wrap overflow-hidden">
           <div className="w-full rounded shadow-sm">
-          <button
-		className="bg-green-500 text-white rounded-md px-8 py-2 text-base font-medium hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-		id="open-btn"
-	>	Open Modal
-	</button>
-          <Modal></Modal>
+          <Modal/>
             <div className="flex items-center justify-between mb-4">
               <div className="text-xl font-bold text-left text-black dark:text-white">
                 <span className="mr-2 cursor-pointer">
@@ -204,14 +197,13 @@ function Calendar({}: Props) {
                             <span className="p-2 bg-blue-500 rounded-full">
                               {dayOfCurrentMonth}
                             </span>
-                          </span>                       
-                          <Modal/>
+                          </span>        
                           </div>
                         );
                       } else {
                         return (
                           <div>
-                          <span id="clickSpan" onClick={toggle} data-modal-target="defaultModal" data-modal-toggle="defaultModal" className="block text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800 px-2 py-3 text-center cursor-pointer hover:text-blue-500">
+                          <span id="clickSpan" className="block text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800 px-2 py-3 text-center cursor-pointer hover:text-blue-500">
                             {dayOfCurrentMonth}
                           </span>
                         </div>
